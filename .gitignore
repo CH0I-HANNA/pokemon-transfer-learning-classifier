@@ -1,0 +1,9 @@
+data/
+*.pth
+__pycache__/
+*.pyc
+.DS_Store
+results/
+*.egg-info/
+.venv/
+venv/
