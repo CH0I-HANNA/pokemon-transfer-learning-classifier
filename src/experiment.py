@@ -70,7 +70,7 @@ EXPERIMENTS: List[Dict] = [
         "backbone":      "resnet50",
         "finetune_scope":"full",
         "pretrained":    False,
-        "epochs":        30,
+        "epochs":        8,
         "lr":            1e-4,
         "weight_decay":  1e-4,
         "patience":      5,
@@ -171,7 +171,7 @@ def build_comparison(all_metrics: List[Dict], results_root: str) -> None:
     print(f"\nSaved comparison table → {csv_path}")
 
     # Bar chart
-    exp_ids  = [m["exp_id"] for m in all_metrics]
+    exp_ids  = [m.get("exp_id", m.get("exp_id", "Unknown")) for m in all_metrics]
     acc      = [m.get("test_accuracy", 0) for m in all_metrics]
     f1       = [m.get("test_f1_macro", 0) for m in all_metrics]
     top5     = [m.get("top5_accuracy", 0) for m in all_metrics]
@@ -201,7 +201,13 @@ def build_comparison(all_metrics: List[Dict], results_root: str) -> None:
 
 def main(args: argparse.Namespace) -> None:
     """Entry point: run all (or selected) experiments, then build comparison."""
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
     print(f"Device: {device}")
 
     # Filter experiments if --exp_ids specified
