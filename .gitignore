@@ -3,7 +3,11 @@ data/
 __pycache__/
 *.pyc
 .DS_Store
-results/
+results/**
+!results/comparison_chart.png
+!results/EXP-*/
+results/EXP-*/**
+!results/EXP-*/learning_curve.png
 *.egg-info/
 .venv/
 venv/
