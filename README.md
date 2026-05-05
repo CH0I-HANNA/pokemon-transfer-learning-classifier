@@ -6,8 +6,7 @@
 
 ## 🖥️ Demo
 
-![Demo Screenshot](assets/demo_screenshot.png)
-
+<img width="2388" height="3064" alt="Image" src="https://github.com/user-attachments/assets/120ae1ff-f5b8-4ab0-aaf5-3e12ad55df1c" />
 - 5가지 모델 탭 전환하며 실시간 비교 가능
 - 이미지 업로드 → 분류 시작 → Top-5 결과 확인
 
